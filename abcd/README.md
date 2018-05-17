@@ -6,8 +6,8 @@ Programming puzzles from an undisclosed resource.
 
 Software:
 
-- [Git Bash](https://gitforwindows.org/)
 - [Sublime Text](https://www.sublimetext.com/)
+- (Windows only) [Git Bash](https://gitforwindows.org/)
 
 Sublime user preferences:
 
