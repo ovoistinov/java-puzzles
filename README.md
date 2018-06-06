@@ -1,8 +1,5 @@
-# Algorithmic tasks and puzzles (Java)
+# Algorithmic and programming puzzles
 
-Contains problem solutions written in Java. Resources:
-
-- [Leetcode](https://leetcode.com)
-- ABCD (undisclosed resource)
+Solving problems from the resource ABCD (undisclosed resource).
 
 
