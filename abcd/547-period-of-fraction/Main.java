@@ -2,16 +2,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
-
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
         new Main().run();
     }
 
-    private void run() throws IOException {
+    private void run() throws Exception {
         try (
             Scanner in = new Scanner(new File("input.txt"));
             PrintWriter out = new PrintWriter(new File("output.txt"));
@@ -20,43 +18,27 @@ public class Main {
         }
     }
 
-    private void solve(Scanner in, PrintWriter out) {
+    private void solve(Scanner in, PrintWriter out) throws Exception {
         int d = in.nextInt();
 
-        Map<Integer, Integer> remainders = new HashMap<>();
+        int[] rPos = new int[d];
+        Arrays.fill(rPos, -1);
 
-        int remainder = 1 % d * 10;
-
-        if (remainder == 0) {
-            out.print("0 0");
-            return;
-        }
-
-        int prefixLength = 0;
-        int fractionLength = 0;
+        int remainder = 1 % d;
+        int pos = 0;
 
         while(true) {
-            if (remainder == 0) {
-                fractionLength = 1;
-                break;
+            if (rPos[remainder] != -1) {
+                out.printf("%d %d", rPos[remainder], pos - rPos[remainder]);
+                return;
             }
 
-            if (remainders.containsKey(remainder)) {
-                fractionLength = prefixLength - remainders.get(remainder);
-                prefixLength -= fractionLength;
+            rPos[remainder] = pos;
 
-                break;
-            }
-
-            remainders.put(remainder, prefixLength);
-            remainder %= d;
             remainder *= 10;
+            remainder %= d;
 
-            prefixLength++;
+            pos++;
         }
-
-        out.print(prefixLength);
-        out.print(' ');
-        out.print(fractionLength);
     }
 }
