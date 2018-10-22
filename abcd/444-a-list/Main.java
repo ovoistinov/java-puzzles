@@ -71,8 +71,7 @@ public class Main {
         // To avoid post-loop processing, we add an artificial element
         // to the end of the array so that on the last iteration 
         // the program will run through the out-of-sequence case.
-        int[] result = new int[init.length + 1];
-        System.arraycopy(init, 0, result, 0, init.length);
+        int[] result = Arrays.copyOf(init, init.length + 1);
         result[result.length - 1] = result[result.length - 2] + 2;
 
         return result;
