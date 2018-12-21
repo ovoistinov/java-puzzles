@@ -27,16 +27,16 @@ public class Main {
 
         int i = 0;
         while (true) {
-            int x = rand.nextInt(20_000) - 10_000 + 1;
-            int y = rand.nextInt(20_000) - 10_000 + 1;
+            int x = rand.nextInt(20_001) - 10_000;
+            int y = rand.nextInt(20_001) - 10_000;
             Point p = new Point(x, y);
 
             if (validPoint(p, result, i)) {
                 result[i] = p;
                 i++;
-            }
 
-            if (i == n) break;
+                if (i == n) break;
+            }
         }
 
         out.println("YES");
@@ -45,7 +45,7 @@ public class Main {
     }
 
     private boolean validPoint(Point p, Point[] result, int last) {
-        if (last < 3) return true;
+        if (last < 2) return true;
 
         for (int i=0; i < last; i++) {
             for (int j=i+1; j < last; j++) {
@@ -66,10 +66,6 @@ public class Main {
         public Point(int x, int y) {
             this.x = x;
             this.y = y;
-        }
-
-        public String toString() {
-            return "Point[x=" + x + ",y=" + y + "]";
         }
     }
 }
