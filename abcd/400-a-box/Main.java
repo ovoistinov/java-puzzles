@@ -49,28 +49,35 @@ public class Main {
             if (ih != iw) map[ih][iw]++; // diagonal is placed only once
         }
 
-        // square
-        if (sizes.size() == 1) {
+        if (boxConstructionPossible(map, sizes.size())) {
             out.print("POSSIBLE");
-            return;
+        } else {
+            out.print("IMPOSSIBLE");
+        }
+    }
+
+    private boolean boxConstructionPossible(int[][] map, int sizes) {
+        boolean isPossible = false;
+
+        // square
+        if (sizes == 1) {
+            isPossible = true;
         // 2 square and 4 matching rectangles
-        } else if (sizes.size() == 2) {
+        } else if (sizes == 2) {
             // check for 2 squares and 4 matching rectangles
             if (map[0][1] == 4 && (map[0][0] == 2 || map[1][1] == 2)) {
-                out.print("POSSIBLE");
-                return;
+                isPossible = true;
             }
         // 3 matching rectangles
-        } else if (sizes.size() == 3) {
-            // we have to check for zero because if 3 non-matching pairs are 
+        } else if (sizes == 3) {
+            // we have to check for 2 because if 3 non-matching pairs are 
             // on the diagonal then the condition will be true but the result 
             // is impossible.
-            if (map[0][1] != 0 && map[0][1] == map[0][2] && map[0][2] == map[1][2]) {
-                out.print("POSSIBLE");
-                return;
+            if (map[0][1] == 2 && map[0][2] == 2 && map[1][2] == 2) {
+                isPossible = true;
             }
         }
 
-        out.print("IMPOSSIBLE");
+        return isPossible;
     }
 }
